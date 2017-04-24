@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DietApp</string>
+    <string name="preference_file_key">YojanaDietApp</string>
+    <string name="is_user_dieting">Is on diet</string>
+</resources>
