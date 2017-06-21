@@ -3,6 +3,7 @@ package nyc.c4q.yojana.dietapp;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -26,23 +27,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (isOnDiet()){
-                    setIsUserDieting(false);
-                } else {
-                    setIsUserDieting(true);
-                }
-                String newVal = "Are you dieting: " + isOnDiet();
-                textView.setText(newVal);
+//                if (isOnDiet()) {
+//                    setIsUserDieting(false);
+//                } else {
+//                    setIsUserDieting(true);
+//                }
+//                String newVal = "Are you dieting: " + isOnDiet();
+//                textView.setText(newVal);
+
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout,new MyFragment()).commit();
             }
         });
 
     }
-    void setIsUserDieting(boolean isUserDieting){
+
+    void setIsUserDieting(boolean isUserDieting) {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         sharedPreferences.edit().putBoolean(getString(R.string.is_user_dieting), isUserDieting).apply();
     }
 
-    public boolean isOnDiet( ){
+    public boolean isOnDiet() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         return sharedPref.getBoolean(getString(R.string.is_user_dieting), false);
     }
